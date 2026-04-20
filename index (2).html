@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fun Result Generator</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #111;
+      color: #fff;
+    }
+
+    .container {
+      margin-top: 100px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #loading {
+      display: none;
+      margin-top: 20px;
+      font-size: 20px;
+    }
+
+    #result {
+      display: none;
+      margin-top: 30px;
+      font-size: 28px;
+      color: yellow;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Enter Your Name</h1>
+  <input type="text" id="name" placeholder="Enter name">
+  <br><br>
+  <button onclick="startProcess()">Check Result</button>
+
+  <div id="loading"></div>
+  <div id="result"></div>
+</div>
+
+<script>
+  const steps = [
+    "Asking from God...",
+    "Asking Everyone...",
+    "Analyzing Personality...",
+    "Astologist se puchne ke baad...",
+    "Cross-checking Universe...",
+    "Almost Done..."
+  ];
+
+  let i = 0;
+
+  function startProcess() {
+    const name = document.getElementById("name").value;
+    if (name === "") {
+      alert("Enter your name first!");
+      return;
+    }
+
+    document.getElementById("loading").style.display = "block";
+    document.getElementById("result").style.display = "none";
+    i = 0;
+
+    nextStep(name);
+  }
+
+  function nextStep(name) {
+    if (i < steps.length) {
+      document.getElementById("loading").innerText = steps[i];
+      i++;
+      setTimeout(() => nextStep(name), 1500);
+    } else {
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("result").style.display = "block";
+      document.getElementById("result").innerText =
+        name + " 😎 PURE ANALYZATION KE BAAD YE PATA CHALATA HAI KI AAP EK NUMBER KE CHILANDUS AADMI HAI";
+    }
+  }
+</script>
+
+</body>
+</html>
